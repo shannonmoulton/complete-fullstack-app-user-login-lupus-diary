@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Lupus Diary</title>
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css">
+  <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.2/css/bootstrap.min.css">
+  <link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="jumbotron text-center">
+    <h1>Diary Logs</h1>
+          <ul class="diaryLogs">
+           <% for(var i=0; i<diaryLogs.length; i++) {%>
+            <li class="diaryLog">
+              <span><i class="fas fa-calendar-alt"></i>    Date: <%= diaryLogs[i].currentDate %></span><br>
+              <span><i class="fas fa-prescription-bottle"></i>     Medication: <%= diaryLogs[i].medication %></span><br>
+              <span><i class="fas fa-clock"></i>    Time taken: <%= diaryLogs[i].medicationTime%></span><br>
+              <span><i class="fas fa-calendar-day"></i>    Today I ... <%= diaryLogs[i].description%></span><br>
+              <span><i class="fas fa-smile-beam"></i>    My Mood for the day: <%= diaryLogs[i].mood%></span><br>
+              <span><i class="fas fa-first-aid"></i>    Today I experienced... <%= diaryLogs[i].symptoms%></span><br>
+              <span><i class="fas fa-image"></i>    Today's photo: <%= diaryLogs[i].photo%></span>
+            </li>
+          <% } %>
+          </ul> 
+  <div>
+
+</body>
+</html>

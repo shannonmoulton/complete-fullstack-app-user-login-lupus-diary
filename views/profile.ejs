@@ -1,0 +1,148 @@
+<!doctype html>
+<html>
+<head>
+  <title>Lupus Diary</title>
+    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="container">
+
+    <div class="page-header text-center">
+        <h1><span class="fa fa-anchor"></span> Profile Page</h1>
+        <a href="/logout" class="btn btn-default btn-sm">Logout</a>
+    </div>
+
+    <div class="row">
+
+        <!-- LOCAL INFORMATION -->
+        <div class="col-sm-6">
+            <div class="well">
+                <h3><span class="fa fa-user"></span> Local</h3>
+
+                <% if (user.local.email) { %>
+                    <p>
+                        <strong>id</strong>: <%= user._id %><br>
+                        <strong>email</strong>: <%= user.local.email %><br>
+                        <strong>password</strong>: <%= user.local.password %>
+                    </p>
+
+                    <a href="/unlink/local" class="btn btn-default">Unlink</a>
+                <% } else { %>
+                    <a href="/connect/local" class="btn btn-default">Connect Local</a>
+                <% } %>
+
+            </div>
+        </div>
+        <div class="col-sm-6">
+          
+          <h2>Add a diary entry</h2>
+        <% if (user.local.email) { %>
+          <form action="/log" method="POST">
+            <!-- <input type="text" value="<%= user.local.email %>" name="name">
+            <input type="text" placeholder="message" name="msg"> -->
+            <label for="currentDate">Today's Date is:</label>
+            <input type="date" id="currentDate" name="currentDate">
+            <br>
+            <label for="medication">Medication:</label>
+            <input type="text" id="medication" name="medication">
+            <label for="medTime">Time Taken:</label>
+            <input type="time" id="medicationTime" name="medicationTime">
+            <br>
+            <label for="description">Today I...</label>
+            <input class="description" type="text" id="description" name="description" placeholder="Give a description of your day.">
+            <br>
+            <label for="mood">My Mood for the day:</label>
+            <select name="mood" id="mood">
+              <option value="0"></option>
+              <option value="happy, relaxed, content">happy, relaxed, content</option>
+              <option value="productive, active, energetic, motivated">productive, active, energetic, motivated</option>
+              <option value="average, normal, good">average, normal, good</option>
+              <option value="sick, tired, unmotivated">sick, tired, unmotivated</option>
+              <option value="sad, lonely, numb, depressed">sad, lonely, numb, depressed</option>
+              <option value="angry, frustrated, anxious, grumpy">angry, frustrated, anxious, grumpy</option>
+            </select>
+            <br>
+            <label for="symptoms">Today I experienced...</label><br>
+            <span>Heart</span><br>
+            <input type="checkbox" id="symptoms" name="symptoms" value="Chest pain">
+            <label for="symptoms"> Chest pain</label>
+            <input type="checkbox" id="symptoms" name="symptoms" value="Difficulty breathing">
+            <label for="symptoms"> Difficulty breathing</label>
+            <input type="checkbox" id="symptoms" name="symptoms" value="Rapid and/or irregular heartbeat">
+            <label for="symptoms"> Rapid and/or irregular heartbeat</label>
+            <br><span>Lung</span><br>
+            <input type="checkbox" id="symptoms" name="symptoms" value="Pain in the chest when deep breathing">
+            <label for="symptoms">Pain in the chest when deep breathing</label>
+            <br><span>Eye</span><br>
+            <input type="checkbox" id="symptoms" name="symptoms" value="Dry eyes">
+            <label for="symptoms"> Dry eyes</label>
+            <input type="checkbox" id="symptoms" name="symptoms" value="Eye redness">
+            <label for="symptoms"> Eye redness</label>
+            <input type="checkbox" id="symptoms" name="symptoms" value="Some loss of vision">
+            <label for="symptoms"> Some loss of vision</label>
+            <br><span>Blood</span><br>
+            <input type="checkbox" id="symptoms" name="symptoms" value="Bleeding and/or bruising easily">
+            <label for="symptoms"> Bleeding and/or bruising easily</label>
+            <input type="checkbox" id="symptoms" name="symptoms" value="Infections">
+            <label for="symptoms"> Infections</label>
+            <br><span>Muscles & Bones</span><br>
+            <input type="checkbox" id="symptoms" name="symptoms" value="Muscle weakness"> 
+            <label for="symptoms"> Muscle weakness</label>
+            <input type="checkbox" id="symptoms" name="symptoms" value="Stiffness in joints"> 
+            <label for="symptoms"> Stiffness in joints</label>
+            <input type="checkbox" id="symptoms" name="symptoms" value="Aching muscles"> 
+            <label for="symptoms">Aching muscles</label>
+            <br><span>Skin</span><br>
+            <input type="checkbox" id="symptoms" name="symptoms" value="Skin rashes"> 
+            <label for="symptoms"> Skin rashes</label>
+            <input type="checkbox" id="symptoms" name="symptoms" value="Sensitivity to sun or light"> 
+            <label for="symptoms"> Sensitivity to sun or light</label>
+            <input type="checkbox" id="symptoms" name="symptoms" value="Mouth or nose sores">
+            <label for="symptoms"> Mouth or nose sores</label>
+            <input type="checkbox" id="symptoms" name="symptoms" value="Hair loss">
+            <label for="symptoms"> Hair loss</label>
+            <br><span>Brain</span><br>
+            <input type="checkbox" id="symptoms" name="symptoms" value="Seizures"> 
+            <label for="symptoms"> Seizures</label>
+            <input type="checkbox" id="symptoms" name="symptoms" value="Headache and/or dizziness"> 
+            <label for="symptoms"> Headache and/or dizziness</label>
+            <input type="checkbox" id="symptoms" name="symptoms" value="Memory problems or confusion">
+            <label for="symptoms"> Memory problems or confusion</label>
+            <input type="checkbox" id="symptoms" name="symptoms" value="Sad thoughts">
+            <label for="symptoms"> Sad thoughts</label>
+            <input type="checkbox" id="symptoms" name="symptoms" value="Weakness/numbness on one side
+            (for example, one arm weak or numb)">
+            <label for="symptoms"> Weakness/numbness on one side
+            (for example, one arm weak or numb)</label>
+            <br><span>Kidney</span><br>
+            <input type="checkbox" id="symptoms" name="symptoms" value="Swelling of legs and/or feet"> 
+            <label for="symptoms"> Swelling of legs and/or feet</label>
+            <input type="checkbox" id="symptoms" name="symptoms" value="Frothy and/or bloody urine"> 
+            <label for="symptoms"> Frothy and/or bloody urine</label>
+            <br><span>General</span><br>
+            <input type="checkbox" id="symptoms" name="symptoms" value="Fatigue">
+            <label for="symptoms"> Fatigue</label>
+            <input type="checkbox" id="symptoms" name="symptoms" value="Fevers">
+            <label for="symptoms">Fevers</label>
+            <input type="checkbox" id="symptoms" name="symptoms" value="Weight change">
+            <label for="symptoms">Weight change</label>
+            <input type="checkbox" id="symptoms" name="symptoms" value="Poor appetite">
+            <label for="symptoms">Poor appetite</label>
+            <input type="checkbox" id="symptoms" name="symptoms" value="no symptoms">
+            <label for="symptoms">None</label> <br>
+            
+            <label for="photo">Today's photo:</label>
+              <input type="file" id="myFile" name="filename"> 
+            <button type="submit">Submit</button>
+          </form>
+        </div>
+        <% } %>
+
+</div>
+
+<script src="main.js"></script>
+
+</body>
+</html>
